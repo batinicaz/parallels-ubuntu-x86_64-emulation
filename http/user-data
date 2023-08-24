@@ -1,0 +1,29 @@
+#cloud-config
+autoinstall:
+  version: 1
+  early-commands:
+    - systemctl stop ssh
+  locale: en_US.UTF-8
+  keyboard:
+    layout: en
+    variant: us
+  storage:
+    layout:
+      name: lvm
+  identity:
+    hostname: ubuntu
+    username: vagrant
+    password: $6$rounds=4096$8dkK1P/oE$J9Fv70Z6wC72xs.R6QHz41uoZE/Ge0XE3tOZ4voFsopKfG2xMlED5xIdhtp5uzzNe.oBxHwQ1dosgG1kb7onz/
+  ssh:
+    install-server: yes
+  packages:
+    - apt-transport-https
+    - git
+    - vim
+  user-data:
+    disable_root: false
+    package_update: true
+    package_upgrade: true
+  late-commands:
+    - echo 'vagrant ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/vagrant
+    - echo 'First time setup completed.'
