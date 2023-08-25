@@ -75,10 +75,15 @@ build {
       "curl -fL 'https://raw.githubusercontent.com/hashicorp/vagrant/main/keys/vagrant.pub' -o /home/vagrant/.ssh/authorized_keys",
       "chmod 0700 /home/vagrant/.ssh",
       "chmod 0600 /home/vagrant/.ssh/authorized_keys",
+      "sudo apt-get clean",
+      "sudo rm -rf /var/cache/* /usr/share/doc/* /var/tmp/* /tmp/*",
+      "sudo dd if=/dev/zero of=/EMPTY bs=1M || sudo true",
+      "sudo rm -f /EMPTY"
     ]
   }
 
   post-processor "vagrant" {
-    output = "builds/ubuntu-22.04-{{.Provider}}.box"
+    compression_level    = 9
+    output               = "builds/{{.Provider}}-ubuntu-x86_64-emulation.box"
   }
 }
