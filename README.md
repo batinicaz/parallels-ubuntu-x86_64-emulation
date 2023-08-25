@@ -45,7 +45,7 @@ As noted in the [Parallels documentation](https://kb.parallels.com/en/129871#sec
 
 The boot command will stop the Ubuntu installer from proceeding to the install wizard. 
 
-It then launches GRUB and enters the appropriately escaped boot command to connect to the http server packer runs to serve the [user-data](./http/user-data) and auto install Ubuntu 22.04. The automatic install is using the [autoinstall](https://ubuntu.com/server/docs/install/autoinstall) functionality Ubuntu introduced in 20.04 as an alternative to the standard debian preseeding approach.
+It then launches GRUB and enters the appropriately escaped boot command to connect to the http server packer runs to serve the [user-data](./config/user-data) and auto install Ubuntu 22.04. The automatic install is using the [autoinstall](https://ubuntu.com/server/docs/install/autoinstall) functionality Ubuntu introduced in 20.04 as an alternative to the standard debian preseeding approach.
 
 As part of the install all packages are upgraded and the user/password is set to `vagrant`/`vagrant`. Passwordless sudo is also configured.
 
