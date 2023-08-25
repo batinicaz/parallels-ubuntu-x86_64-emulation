@@ -63,7 +63,12 @@ build {
       "sudo /tmp/setup.sh enable",
       "rm -f /tmp/setup.sh",
       "sudo apt-get update",
-      "sudo apt-get upgrade -y"
+      "sudo apt-get upgrade -y",
+      "sudo apt-get auto-remove -y",
+      "mkdir -p /home/vagrant/.ssh",
+      "curl -fL 'https://raw.githubusercontent.com/hashicorp/vagrant/main/keys/vagrant.pub' -o /home/vagrant/.ssh/authorized_keys",
+      "chmod 0700 /home/vagrant/.ssh",
+      "chmod 0600 /home/vagrant/.ssh/authorized_keys",
     ]
   }
 
