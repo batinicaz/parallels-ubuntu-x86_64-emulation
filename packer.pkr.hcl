@@ -11,6 +11,25 @@ packer {
   }
 }
 
+variable "box_tag" {
+  description = "Vagrant Cloud tag where the built box will be uploaded"
+  default     = "batinicaz/parallels-ubuntu-x86_64-emulation"
+  type        = string
+}
+
+variable "cloud_token" {
+  description = "Token for authenticating with Vagrant Cloud to upload the built box"
+  default     = ""
+  sensitive   = true
+  type        = string
+}
+
+variable "version" {
+  description = "The semantic version of the box being built"
+  default     = ""
+  type        = string
+}
+
 source "parallels-iso" "ubuntu2204" {
   boot_wait              = "3s"
   cpus                   = 1
@@ -82,9 +101,18 @@ build {
     ]
   }
 
-  post-processor "vagrant" {
-    compression_level    = 9
-    output               = "builds/{{.Provider}}-ubuntu-x86_64-emulation.box"
-    vagrantfile_template = "Vagrantfile.template"
+  post-processors {
+    post-processor "vagrant" {
+      compression_level    = 9
+      output               = "builds/{{.Provider}}-ubuntu-x86_64-emulation.box"
+      vagrantfile_template = "Vagrantfile.template"
+    }
+
+    post-processor "vagrant-cloud" {
+      access_token        = var.cloud_token
+      box_tag             = var.box_tag
+      version             = var.version
+      version_description = file("CHANGELOG.md")
+    }
   }
 }
