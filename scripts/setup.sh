@@ -37,7 +37,6 @@ if [ "$1" == "enable" ]; then
       echo "$line1" >>"$FILENAME.build"
     else
       # Otherwise, leave the line unmodified
-      line="$line"
       echo "$line" >>"$FILENAME.build"
     fi
   done <"$FILENAME"
@@ -51,7 +50,6 @@ else
     elif [[ $line == "deb-src"* && $line == *"[arch=amd64]"* && $line == *"archive.ubuntu"* ]]; then
       echo "removing"
     else
-      line="$line"
       echo "$line" >>"$FILENAME.build"
     fi
   done <"$FILENAME"
