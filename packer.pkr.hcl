@@ -12,7 +12,7 @@ packer {
 }
 
 source "parallels-iso" "ubuntu2204" {
-  boot_wait              = "1s"
+  boot_wait              = "3s"
   cpus                   = 1
   disk_size              = "40960"
   guest_os_type          = "ubuntu"
