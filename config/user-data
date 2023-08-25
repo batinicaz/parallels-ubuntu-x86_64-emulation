@@ -26,4 +26,6 @@ autoinstall:
     package_upgrade: true
   late-commands:
     - echo 'vagrant ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/vagrant
+    # Recommended: httgps://developer.hashicorp.com/vagrant/docs/boxes/base#ssh-tweaks
+    - 'echo "UseDNS no" >> /target/etc/ssh/sshd_config'
     - echo 'First time setup completed.'

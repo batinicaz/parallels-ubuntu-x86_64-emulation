@@ -16,7 +16,7 @@ source "parallels-iso" "ubuntu2204" {
   cpus                   = 1
   disk_size              = "40960"
   guest_os_type          = "ubuntu"
-  http_directory         = "http"
+  http_directory         = "config"
   iso_checksum           = "file:https://old-releases.ubuntu.com/releases/22.04/SHA256SUMS"
   iso_url                = "https://old-releases.ubuntu.com/releases/22.04/ubuntu-22.04-live-server-arm64.iso"
   memory                 = 2048
@@ -52,7 +52,7 @@ build {
   sources = ["source.parallels-iso.ubuntu2204"]
 
   provisioner "file" {
-    source      = "setup.sh"
+    source      = "scripts/setup.sh"
     destination = "/tmp/setup.sh"
   }
 
