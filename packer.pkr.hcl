@@ -20,7 +20,7 @@ source "parallels-iso" "ubuntu2204" {
   iso_checksum           = "file:https://old-releases.ubuntu.com/releases/22.04/SHA256SUMS"
   iso_url                = "https://old-releases.ubuntu.com/releases/22.04/ubuntu-22.04-live-server-arm64.iso"
   memory                 = 2048
-  parallels_tools_flavor = "lin"
+  parallels_tools_flavor = "lin-arm"
   shutdown_command       = "echo vagrant | sudo -S shutdown -P now"
   ssh_timeout            = "15m"
   ssh_username           = "vagrant"
@@ -56,12 +56,18 @@ build {
     destination = "/tmp/setup.sh"
   }
 
+  provisioner "file" {
+    source      = "scripts/install-parallels-tools.sh"
+    destination = "/tmp/tools.sh"
+  }
+
   provisioner "shell" {
     inline = [
       "cloud-init status --long --wait",
-      "chmod +x /tmp/setup.sh",
+      "chmod +x /tmp/tools.sh /tmp/setup.sh",
+      "sudo /tmp/tools.sh",
       "sudo /tmp/setup.sh enable",
-      "rm -f /tmp/setup.sh",
+      "rm -f /tmp/setup.sh /tmp/tools.sh",
       "sudo apt-get update",
       "sudo apt-get upgrade -y",
       "sudo apt-get auto-remove -y",
