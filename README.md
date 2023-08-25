@@ -1,7 +1,7 @@
 # Parallels Ubuntu x86_64 Emulation
 
 > [!IMPORTANT]  
-> Requires Parallels pro or business. For more info see the [parallels documentation](https://kb.parallels.com/en/129871).
+> Requires Parallels 19+ pro or business. For more info see the [parallels documentation](https://kb.parallels.com/en/129871).
 
 Source for creating a Vagrant box for use with parallels that supports x86_64 packages via Rosetta 2.
 
@@ -23,7 +23,6 @@ Vagrant.configure("2") do |config|
     config.vm.provider "parallels" do |prl|
         prl.name = "Ubuntu x86_64 Emulated"
         prl.check_guest_tools = false
-        prl.customize ["set", :id, "--rosetta-linux", "on"]
         prl.memory = 2048
         prl.cpus = 2
     end

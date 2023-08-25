@@ -85,5 +85,6 @@ build {
   post-processor "vagrant" {
     compression_level    = 9
     output               = "builds/{{.Provider}}-ubuntu-x86_64-emulation.box"
+    vagrantfile_template = "Vagrantfile.template"
   }
 }

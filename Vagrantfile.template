@@ -1,0 +1,7 @@
+Vagrant.configure("2") do |config|
+    config.vm.box = "{{ .Name }}"
+
+    config.vm.provider "parallels" do |prl|
+        prl.customize ["set", :id, "--rosetta-linux", "on"]
+    end
+end
