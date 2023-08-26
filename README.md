@@ -9,8 +9,6 @@ Source for creating a Vagrant box for use with parallels that supports x86_64 pa
 
 You can use the box directly from Vagrant Cloud: https://app.vagrantup.com/batinicaz/boxes/parallels-ubuntu-x86_64-emulation
 
-You will need to make sure that you enable rosetta support on the VM. You can do this using the customise function: `parallels.customize ["set", :id, "--rosetta-linux", "on"]`.
-
 Here is a complete example:
 
 ```ruby
